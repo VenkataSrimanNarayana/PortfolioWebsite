@@ -1,3 +1,4 @@
+const config = require("../../next.config.js");
 import * as React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,9 +8,9 @@ export const metadata = {
 };
 
 const pages = [
-    ["About", "/about"],
-    ["Projects", "/projects"],
-    ["Achievements", "/achievements"],
+    ["About", config.basePath + "/about"],
+    ["Projects", config.basePath + "/projects"],
+    ["Achievements", config.basePath + "/achievements"],
 ];
 
 export default function RootLayout({

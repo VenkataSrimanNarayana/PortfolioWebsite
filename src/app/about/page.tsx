@@ -1,3 +1,4 @@
+const conf = require("../../../next.config.js");
 import Timeline from "@/components/Timeline";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import SchoolIcon from "@mui/icons-material/School";
@@ -12,6 +13,7 @@ import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
 import SpeedIcon from "@mui/icons-material/Speed";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { config } from "process";
 const timelineContent: Array<[string, React.ReactNode, string, Array<string>]> =
     [
         [
@@ -137,7 +139,7 @@ export default async function AboutPage() {
                         left: "67%",
                         top: "5rem",
                     }}
-                    src="/cloud.png"
+                    src={conf.basePath + "/cloud.png"}
                     alt="cloud"
                 />
                 <Typography
@@ -168,7 +170,7 @@ export default async function AboutPage() {
                         right: "67%",
                         zIndex: 10,
                     }}
-                    src="/cloud.png"
+                    src={conf.basePath + "/cloud.png"}
                     alt="cloud"
                 />
                 <img
@@ -176,7 +178,7 @@ export default async function AboutPage() {
                         position: "relative",
                         bottom: "-5px",
                     }}
-                    src="/mountain.png"
+                    src={conf.basePath + "/mountain.png"}
                     alt="mountain"
                 />
             </Container>
@@ -192,7 +194,7 @@ export default async function AboutPage() {
                 {/* Basic container for introduction */}
                 <Container>
                     <img
-                        src="/passport.jpeg"
+                        src={conf.basePath + "/passport.jpeg"}
                         style={{
                             width: "12rem",
                             margin: "1.5rem",
@@ -247,7 +249,7 @@ export default async function AboutPage() {
                     }}
                 >
                     <img
-                        src="/passport.jpeg"
+                        src={conf.basePath + "/passport.jpeg"}
                         style={{
                             display: "block",
                             width: "12rem",

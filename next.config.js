@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-const prod = process.env.NODE_ENV === "production";
-
+const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
-    basePath: prod ? "/PortfolioWebsite" : "",
+    basePath: isProd ? "/PortfolioWebsite" : "",
     output: "export",
     distDir: "build",
     reactStrictMode: true,
