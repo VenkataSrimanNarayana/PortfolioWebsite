@@ -90,7 +90,10 @@ const achievementList: Array<Achievement> = [
 export default function AchievementsPage() {
     return (
         <>
-            <Container maxWidth={false} sx={{ backgroundColor: "#fff6f0" }}>
+            <Container
+                maxWidth={false}
+                sx={{ backgroundColor: "#fff6f0", minHeight: "100vh" }}
+            >
                 <List list={achievementList} />
             </Container>
         </>

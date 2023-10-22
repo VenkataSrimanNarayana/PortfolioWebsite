@@ -181,6 +181,7 @@ export default async function AboutPage() {
                 />
             </Container>
             <Container
+                maxWidth={false}
                 sx={{
                     display: { xs: "none", sm: "block" },
                     paddingTop: "5rem",
@@ -230,6 +231,7 @@ export default async function AboutPage() {
                 </Typography>
             </Container>
             <Container
+                maxWidth={false}
                 sx={{
                     display: { xs: "block", sm: "none" },
                     paddingTop: "5rem",
@@ -285,6 +287,7 @@ export default async function AboutPage() {
                 </Typography>
             </Container>
             <Container
+                maxWidth={false}
                 sx={{
                     backgroundColor: "#F8E2CF",
                     paddingTop: "5rem",
