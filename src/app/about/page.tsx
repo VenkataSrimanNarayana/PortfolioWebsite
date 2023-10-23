@@ -1,4 +1,4 @@
-const conf = require("../../../next.config.js");
+const config = require("../../../next.config.js");
 import Timeline from "@/components/Timeline";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import SchoolIcon from "@mui/icons-material/School";
@@ -10,10 +10,9 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import "typeface-dancing-script";
 import Chip from "@mui/material/Chip";
+import TypingStats from "@/components/TypingStats";
 import Box from "@mui/material/Box";
-import SpeedIcon from "@mui/icons-material/Speed";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { config } from "process";
+
 const timelineContent: Array<[string, React.ReactNode, string, Array<string>]> =
     [
         [
@@ -95,30 +94,7 @@ const libraries = [
     "React",
 ];
 
-export default async function AboutPage() {
-    // Get My code forces rating from link
-    const res = await fetch(
-        "https://codeforces.com/api/user.rating?handle=DoOmGuY007",
-        {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-            },
-        }
-    );
-
-    const typingStatRes = await fetch(
-        "https://api.monkeytype.com/users/mvsn/profile",
-        {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-            },
-        }
-    );
-
-    const data = await res.json();
-    const typingStatData = await typingStatRes.json();
+export default function AboutPage() {
     return (
         <>
             {/* Introduction Container */}
@@ -139,7 +115,7 @@ export default async function AboutPage() {
                         left: "67%",
                         top: "5rem",
                     }}
-                    src={conf.basePath + "/cloud.png"}
+                    src={config.basePath + "/cloud.png"}
                     alt="cloud"
                 />
                 <Typography
@@ -170,7 +146,7 @@ export default async function AboutPage() {
                         right: "67%",
                         zIndex: 10,
                     }}
-                    src={conf.basePath + "/cloud.png"}
+                    src={config.basePath + "/cloud.png"}
                     alt="cloud"
                 />
                 <img
@@ -178,7 +154,7 @@ export default async function AboutPage() {
                         position: "relative",
                         bottom: "-5px",
                     }}
-                    src={conf.basePath + "/mountain.png"}
+                    src={config.basePath + "/mountain.png"}
                     alt="mountain"
                 />
             </Container>
@@ -194,7 +170,7 @@ export default async function AboutPage() {
                 {/* Basic container for introduction */}
                 <Container>
                     <img
-                        src={conf.basePath + "/passport.jpeg"}
+                        src={config.basePath + "/passport.jpeg"}
                         style={{
                             width: "12rem",
                             margin: "1.5rem",
@@ -249,7 +225,7 @@ export default async function AboutPage() {
                     }}
                 >
                     <img
-                        src={conf.basePath + "/passport.jpeg"}
+                        src={config.basePath + "/passport.jpeg"}
                         style={{
                             display: "block",
                             width: "12rem",
@@ -436,7 +412,7 @@ export default async function AboutPage() {
                             overflowY: "hidden",
                         }}
                     >
-                        <CodeforcesRatings data={data.result} />
+                        <CodeforcesRatings url="https://codeforces.com/api/user.rating?handle=DoOmGuY007" />
                     </Grid>
                 </Grid>
             </Container>
@@ -459,49 +435,8 @@ export default async function AboutPage() {
                         <Typography variant="h4" color="#4e1617" gutterBottom>
                             Typing Stats
                         </Typography>
-
                         <Box display="flex" alignItems="center">
-                            <Box
-                                display="flex"
-                                flexDirection="column"
-                                alignItems="center"
-                                p={2}
-                            >
-                                <SpeedIcon
-                                    style={{ fontSize: 64, color: "#1976D2" }}
-                                />
-                                <Typography variant="h6">
-                                    Typing Speed
-                                </Typography>
-                                <Typography variant="h4" align="center">
-                                    {
-                                        typingStatData["data"]["personalBests"][
-                                            "time"
-                                        ]["30"][0]["wpm"]
-                                    }{" "}
-                                    WPM
-                                </Typography>
-                            </Box>
-
-                            <Box
-                                display="flex"
-                                flexDirection="column"
-                                alignItems="center"
-                                p={2}
-                            >
-                                <CheckCircleIcon
-                                    style={{ fontSize: 64, color: "#388E3C" }}
-                                />
-                                <Typography variant="h6">Accuracy</Typography>
-                                <Typography variant="h4" align="center">
-                                    {
-                                        typingStatData["data"]["personalBests"][
-                                            "time"
-                                        ]["30"][0]["acc"]
-                                    }
-                                    %
-                                </Typography>
-                            </Box>
+                            <TypingStats url="https://api.monkeytype.com/users/mvsn/profile" />
                         </Box>
                     </Box>
                 </Container>

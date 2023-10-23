@@ -13,7 +13,8 @@ import {
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const CustomTooltip = ({
     active,
@@ -110,7 +111,28 @@ const formatXAxisTick = (value: number) => {
     });
 };
 
-export default function CodeforcesRatings({ data }: { data: Array<any> }) {
+export default function CodeforcesRatings({ url }: { url: string }) {
+    const [data, setData] = useState<Array<any>>([]);
+    const [isLoading, setLoading] = useState(true);
+    const [tooltipData, setTooltipData] = useState(false);
+    useEffect(() => {
+        fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data.result);
+                setLoading(false);
+            });
+    }, []);
+
+    if (isLoading) return <CircularProgress sx={{ color: "#461e18" }} />;
+    if (!data) return <p>No profile data</p>;
+    console.log(data);
+
     var formattedData = [];
     // Converting the time to a readable format
     for (let i = 0; i < data.length; i++) {
@@ -122,7 +144,6 @@ export default function CodeforcesRatings({ data }: { data: Array<any> }) {
             inc: data[i].newRating - data[i].oldRating,
         });
     }
-    const [tooltipData, setTooltipData] = useState(false);
 
     const handleDataPointClick = () => {
         setTooltipData(!tooltipData);
